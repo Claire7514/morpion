@@ -17,13 +17,7 @@ class Game
     end
 
     def turn
-        show = Show.new.show_board(@board)
-        my_player = @player[rand(0..1)]
-        @board.play_turn(my_player, @board)
-        if @board.victory?(my_player)
-            puts "le joueur #{my_player} a gagné !"
-            game_end
-        end
+        @board.play_turn(@player, @board)
     end
 
     def new_round
