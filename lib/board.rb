@@ -53,10 +53,10 @@ class Board
             if "f" != victory?(board)
                 if  victory?(board) == player[1].symbol || victory?(board) == player[0].symbol
                     if "o" == player[1].symbol
-                        puts "le joueur #{player[1]} a gagné !"
+                        puts "le joueur #{player[1].name} a gagné !"
                         return
                     elsif "x" == player[0].symbol
-                        puts "le joueur #{player[0]} a gagné !"
+                        puts "le joueur #{player[0].name} a gagné !"
                         return
                     end
                 end

@@ -16,16 +16,11 @@ class Game
         @continue = true
     end
 
-    def turn
-        @board.play_turn(@player, @board)
-    end
-
     def new_round
         @board = Board.new
     end
 
     def end_game
-        @board.show
         puts "Souhaites tu rejouer ? y pour oui, n pour non :"
         rep = gets.chomp
         if rep == 'y'
@@ -33,6 +28,11 @@ class Game
         elsif rep == 'n'
             @continue = false
         end
+    end
+
+    def turn
+        @board.play_turn(@player, @board)
+        end_game
     end
 
 end
