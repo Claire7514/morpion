@@ -22,9 +22,8 @@ class Board
     end
 
     def play_turn(player, board)
-        @count_turn = 0
         i = rand(0..1)
-        while  @count_turn != 9
+        while @count_turn != 9
             
             Show.new.show_board(board)
             puts "À toi de jouer #{player[i].name} :"
@@ -51,47 +50,40 @@ class Board
                 puts "Vous ne pouvez pas jouer sur cette case."
                 i = (i - 1) % 2
             end
-            if "o" == board.victory?()
-                if "o" == player[1].symbol
-                    puts "le joueur #{player[1]} a gagné !"
-                    return
-                elsif "o" == player[0].symbol
-                    puts "le joueur #{player[0]} a gagné !"
-                    return
+            puts "#{board.victory?}"
+            if f != board.self.victory?
+                if  board.self.victory? == player[1].symbol || board.self.victory? == player[0].symbol
+                    puts "coucou"
+                    if "o" == player[1].symbol
+                        puts "le joueur #{player[1]} a gagné !"
+                        return
+                    elsif "x" == player[0].symbol
+                        puts "le joueur #{player[0]} a gagné !"
+                        return
+                    end
                 end
+            else
+                puts "Match nul ..."
+                return
             end
             @count_turn += 1
             i = (i + 1) % 2
         end
-        puts "Match nul ..."
-        return
     end
 
-    def victory?
-        if (@A1.content == "o" && @A2.content == "o" && @A3.content == "o") || (@A1.content == "x" && @A2.content == "x" && @A3.content == "x")
-            return @A1.content
-        elsif (@A1.content == "o" && @A2.content == "o" && @A3.content == "o") || (@A1.content == "x" && @A2.content == "x" && @A3.content == "x")
-            return @A1.content
-        elsif (@A1.content == "o" && @A2.content == "o" && @A3.content == "o") || (@A1.content == "x" && @A2.content == "x" && @A3.content == "x")
-            return @A1.content
-        elsif (@B1.content == "o" && @B2.content == "o" && @B3.content == "o") || (@B1.content == "x" && @B2.content == "x" && @B3.content == "x")
-            return @B1.content
-        elsif (@B1.content == "o" && @B2.content == "o" && @B3.content == "o") || (@B1.content == "x" && @B2.content == "x" && @B3.content == "x")
-            return @B1.content
-        elsif (@B1.content == "o" && @B2.content == "o" && @B3.content == "o") || (@B1.content == "x" && @B2.content == "x" && @B3.content == "x")
-            return @A1.content
-        elsif (@C1.content == "o" && @C2.content == "o" && @C3.content == "o") || (@C1.content == "x" && @C2.content == "x" && @C3.content == "x")
-            return @A1.content
-        elsif (@C1.content == "o" && @C2.content == "o" && @C3.content == "o") || (@C1.content == "x" && @C2.content == "x" && @C3.content == "x")
-            return @A1.content
-        elsif (@C1.content == "o" && @C2.content == "o" && @C3.content == "o") || (@C1.content == "x" && @C2.content == "x" && @C3.content == "x")
-            return @A1.content
-        elsif (@A1.content == "o" && @B2.content == "o" && @C3.content == "o") || (@A1.content == "x" && @B2.content == "x" && @C3.content == "x")
-            return @A1.content
-        elsif (@C1.content == "o" && @B2.content == "o" && @A3.content == "o") || (@C1.content == "x" && @B2.content == "x" && @A3.content == "x")
-            return @A1.content
-        else @count_turn == 9 
-            @game_win = false
+    def self.victory?
+        if (self.arr_board[0] == self.arr_board[1] && self.arr_board[1] == self.arr_board[2]) 
+            return self.arr_board[0]
+        elsif (self.arr_board[3] == self.arr_board[4] && self.arr_board[4] == self.arr_board[5])
+            return self.arr_board[3]
+        elsif (self.arr_board[6] == self.arr_board[7] && self.arr_board[7] == self.arr_board[8])
+            return self.arr_board[6]
+        elsif (self.arr_board[0] && self.arr_board[4] && self.arr_board[4] == self.arr_board[8])
+            return self.arr_board[1]
+        elsif (self.arr_board[6] == self.arr_board[4] && self.arr_board[4] == self.arr_board[2])
+            return board.arr_board[1]
+        elsif @count_turn == 9 
+            return f
         end
     end
 end
