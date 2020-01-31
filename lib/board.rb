@@ -50,10 +50,8 @@ class Board
                 puts "Vous ne pouvez pas jouer sur cette case."
                 i = (i - 1) % 2
             end
-            puts "#{board.victory?}"
-            if f != board.self.victory?
-                if  board.self.victory? == player[1].symbol || board.self.victory? == player[0].symbol
-                    puts "coucou"
+            if "f" != victory?(board)
+                if  victory?(board) == player[1].symbol || victory?(board) == player[0].symbol
                     if "o" == player[1].symbol
                         puts "le joueur #{player[1]} a gagné !"
                         return
@@ -71,16 +69,16 @@ class Board
         end
     end
 
-    def self.victory?
-        if (self.arr_board[0] == self.arr_board[1] && self.arr_board[1] == self.arr_board[2]) 
-            return self.arr_board[0]
-        elsif (self.arr_board[3] == self.arr_board[4] && self.arr_board[4] == self.arr_board[5])
-            return self.arr_board[3]
-        elsif (self.arr_board[6] == self.arr_board[7] && self.arr_board[7] == self.arr_board[8])
-            return self.arr_board[6]
-        elsif (self.arr_board[0] && self.arr_board[4] && self.arr_board[4] == self.arr_board[8])
-            return self.arr_board[1]
-        elsif (self.arr_board[6] == self.arr_board[4] && self.arr_board[4] == self.arr_board[2])
+    def victory?(board)
+        if (board.arr_board[0] == board.arr_board[1] && board.arr_board[1] == board.arr_board[2]) 
+            return board.arr_board[0]
+        elsif (board.arr_board[3] == board.arr_board[4] && board.arr_board[4] == board.arr_board[5])
+            return board.arr_board[3]
+        elsif (board.arr_board[6] == board.arr_board[7] && board.arr_board[7] == board.arr_board[8])
+            return board.arr_board[6]
+        elsif (board.arr_board[0] && board.arr_board[4] && board.arr_board[4] == board.arr_board[8])
+            return board.arr_board[1]
+        elsif (board.arr_board[6] == board.arr_board[4] && board.arr_board[4] == board.arr_board[2])
             return board.arr_board[1]
         elsif @count_turn == 9 
             return f
